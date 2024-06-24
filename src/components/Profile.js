@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import authService from "../services/authService";
 
 const Profile = () => {
-  // const currentUser = authService.getCurrentUser();
+  const currentUser = authService.getCurrentUser();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -11,9 +11,9 @@ const Profile = () => {
     navigate("/");
   };
 
-  // if (!currentUser) {
-  //     return <h2>You are not logged in</h2>;
-  // }
+  if (!currentUser) {
+    return <h2>You are not logged in</h2>;
+  }
 
   return (
     <div>
@@ -35,18 +35,22 @@ const Profile = () => {
                 </a>
               </li>
               <li class="nav-item"></li>
+              
             </ul>
+            <p>
+                <strong>USER:</strong> {currentUser.user.username}
+              </p>
+              
+              <p>
+                <strong>Email:</strong> {currentUser.user.email}
+              </p>
 
-            <button className="btn btn-danger " onClick={handleLogout}>
+            <button className="btn btn-danger mx-3 " onClick={handleLogout}>
               Logout
             </button>
           </div>
         </div>
       </nav>
-
-      {/* <h2>Profile</h2>
-            <p><strong>Username:</strong> {currentUser.user.username}</p>
-            <p><strong>Email:</strong> {currentUser.user.email}</p> */}
     </div>
   );
 };
