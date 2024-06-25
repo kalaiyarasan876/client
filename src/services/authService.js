@@ -10,7 +10,6 @@ const register = (username, email, password) => {
   });
 };
 
-
 const login = (email, password) => {
   return axios
     .post(API_URL + "login", {
